@@ -1,5 +1,5 @@
-name: ChainMine
-main: cn.lanink.chainmine.ChainMine
+name: ChainMining
+main: cn.lanink.chainmining.ChainMine
 version: "1.0.0"
 api: ["1.0.9"]
 load: POSTWORLD
@@ -9,7 +9,7 @@ commands:
   chainmine:
     description: "§aChainMine command"
     usage: "§a/ChainMine 打开GUI界面"
-    permission: chainmine.user
+    permission: chainmining.user
 
 permissions:
   chainmine.user:

@@ -1,6 +1,6 @@
-package cn.lanink.chainmine.form.element;
+package cn.lanink.chainmining.form.element;
 
-import cn.lanink.chainmine.BlockType;
+import cn.lanink.chainmining.BlockType;
 import lombok.Getter;
 
 /**

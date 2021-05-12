@@ -1,10 +1,10 @@
-package cn.lanink.chainmine;
+package cn.lanink.chainmining;
 
-import cn.lanink.chainmine.config.PlayerConfig;
-import cn.lanink.chainmine.config.PluginConfig;
-import cn.lanink.chainmine.form.ChainMineForm;
-import cn.lanink.chainmine.form.FormListener;
-import cn.lanink.chainmine.utils.MetricsLite;
+import cn.lanink.chainmining.config.PlayerConfig;
+import cn.lanink.chainmining.config.PluginConfig;
+import cn.lanink.chainmining.form.ChainMiningForm;
+import cn.lanink.chainmining.form.FormListener;
+import cn.lanink.chainmining.utils.MetricsLite;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
@@ -19,23 +19,23 @@ import java.util.HashMap;
 /**
  * @author lt_name
  */
-public class ChainMine extends PluginBase {
+public class ChainMining extends PluginBase {
     
     public static final String VERSION = "?";
-    private static ChainMine chainMine;
+    private static ChainMining chainMining;
     
     private final HashMap<Player, PlayerConfig> playerConfigMap = new HashMap<>();
     
     @Getter
     private PluginConfig pluginConfig;
     
-    public static ChainMine getInstance() {
-        return chainMine;
+    public static ChainMining getInstance() {
+        return chainMining;
     }
     
     @Override
     public void onLoad() {
-        chainMine = this;
+        chainMining = this;
     
         File file = new File(this.getDataFolder() + "/PlayerConfig");
         if (!file.exists() && !file.mkdirs()) {
@@ -72,7 +72,7 @@ public class ChainMine extends PluginBase {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender.isPlayer()) {
             Player player = (Player) sender;
-            player.showFormWindow(new ChainMineForm(player));
+            player.showFormWindow(new ChainMiningForm(player));
         }else {
             sender.sendMessage("§c请在游戏内使用此命令！");
         }

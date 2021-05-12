@@ -1,7 +1,7 @@
-package cn.lanink.chainmine;
+package cn.lanink.chainmining;
 
-import cn.lanink.chainmine.config.PlayerConfig;
-import cn.lanink.chainmine.config.PluginConfig;
+import cn.lanink.chainmining.config.PlayerConfig;
+import cn.lanink.chainmining.config.PluginConfig;
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
 import cn.nukkit.block.BlockID;
@@ -24,17 +24,17 @@ import java.util.concurrent.LinkedBlockingQueue;
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
 
-    private final ChainMine chainMine;
+    private final ChainMining chainMining;
     private final PluginConfig pluginConfig;
     
-    public EventListener(ChainMine chainMine) {
-        this.chainMine = chainMine;
-        this.pluginConfig = chainMine.getPluginConfig();
+    public EventListener(ChainMining chainMining) {
+        this.chainMining = chainMining;
+        this.pluginConfig = chainMining.getPluginConfig();
     }
     
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        this.chainMine.removePlayerConfigCache(event.getPlayer());
+        this.chainMining.removePlayerConfigCache(event.getPlayer());
     }
     
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
@@ -57,7 +57,7 @@ public class EventListener implements Listener {
     }
     
     private void chainMining(@NotNull BlockBreakEvent event, @NotNull Player player, @NotNull Block block, @NotNull Item item) {
-        PlayerConfig config = this.chainMine.getPlayerConfig(player);
+        PlayerConfig config = this.chainMining.getPlayerConfig(player);
         if (!config.needChainMine(block)) {
             return;
         }

@@ -1,4 +1,4 @@
-package cn.lanink.chainmine.utils;
+package cn.lanink.chainmining.utils;
 
 import cn.nukkit.Server;
 import cn.nukkit.plugin.Plugin;

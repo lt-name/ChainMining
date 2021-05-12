@@ -1,6 +1,6 @@
-package cn.lanink.chainmine.utils;
+package cn.lanink.chainmining.utils;
 
-import cn.lanink.chainmine.BlockType;
+import cn.lanink.chainmining.BlockType;
 
 /**
  * @author lt_name

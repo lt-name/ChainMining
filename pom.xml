@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.lanink</groupId>
-    <artifactId>ChainMine</artifactId>
+    <artifactId>ChainMining</artifactId>
     <version>1.1.0-SNAPSHOT</version>
 
     <properties>

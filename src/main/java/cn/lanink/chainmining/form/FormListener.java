@@ -1,8 +1,8 @@
-package cn.lanink.chainmine.form;
+package cn.lanink.chainmining.form;
 
-import cn.lanink.chainmine.ChainMine;
-import cn.lanink.chainmine.config.PlayerConfig;
-import cn.lanink.chainmine.form.element.ElementToggle;
+import cn.lanink.chainmining.ChainMining;
+import cn.lanink.chainmining.config.PlayerConfig;
+import cn.lanink.chainmining.form.element.ElementToggle;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
@@ -15,10 +15,10 @@ import cn.nukkit.form.element.Element;
 @SuppressWarnings("unused")
 public class FormListener implements Listener {
     
-    private final ChainMine chainMine;
+    private final ChainMining chainMining;
     
-    public FormListener(ChainMine chainMine) {
-        this.chainMine = chainMine;
+    public FormListener(ChainMining chainMining) {
+        this.chainMining = chainMining;
     }
     
     @EventHandler
@@ -27,9 +27,9 @@ public class FormListener implements Listener {
         if (player == null || event.getResponse() == null) {
             return;
         }
-        if (event.getWindow() instanceof ChainMineForm) {
-            PlayerConfig config = this.chainMine.getPlayerConfig(player);
-            ChainMineForm window = (ChainMineForm) event.getWindow();
+        if (event.getWindow() instanceof ChainMiningForm) {
+            PlayerConfig config = this.chainMining.getPlayerConfig(player);
+            ChainMiningForm window = (ChainMiningForm) event.getWindow();
             
             int i = 0;
             for (Element element: window.getElements()) {
@@ -42,7 +42,7 @@ public class FormListener implements Listener {
             config.save();
             
             //重新打开设置界面 显示修改后的配置
-            player.showFormWindow(new ChainMineForm(player));
+            player.showFormWindow(new ChainMiningForm(player));
         }
         
         

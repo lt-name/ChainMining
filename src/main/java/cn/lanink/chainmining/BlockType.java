@@ -1,4 +1,4 @@
-package cn.lanink.chainmine;
+package cn.lanink.chainmining;
 
 import cn.nukkit.block.*;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package cn.lanink.chainmine.config;
+package cn.lanink.chainmining.config;
 
 import cn.nukkit.utils.Config;
 import lombok.Getter;

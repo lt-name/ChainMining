@@ -1,6 +1,6 @@
-package cn.lanink.chainmine.config;
+package cn.lanink.chainmining.config;
 
-import cn.lanink.chainmine.BlockType;
+import cn.lanink.chainmining.BlockType;
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
 import cn.nukkit.utils.Config;
