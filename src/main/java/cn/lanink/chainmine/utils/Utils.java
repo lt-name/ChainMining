@@ -1,7 +1,6 @@
 package cn.lanink.chainmine.utils;
 
 import cn.lanink.chainmine.BlockType;
-import cn.nukkit.block.*;
 
 /**
  * @author lt_name
@@ -32,7 +31,6 @@ public class Utils {
             case DIAMOND:
                 return "钻石矿";
             case REDSTONE:
-            case REDSTONEGLOWING:
                 return "红石矿";
             case EMERALD:
                 return "绿宝石矿";

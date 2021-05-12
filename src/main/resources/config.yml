@@ -1,0 +1,8 @@
+#true - 扫描附近(正常玩家挖矿可以看到的)
+#false - 只检测相邻方块
+scanNearby: true
+#true - 创造模式启用连锁
+#false - 创造模式禁用连锁
+createModeEnable: false
+#最大连锁方块数量
+maxLinkageCount: 32

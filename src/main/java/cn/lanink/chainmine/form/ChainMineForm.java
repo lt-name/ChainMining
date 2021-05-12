@@ -2,7 +2,7 @@ package cn.lanink.chainmine.form;
 
 import cn.lanink.chainmine.BlockType;
 import cn.lanink.chainmine.ChainMine;
-import cn.lanink.chainmine.PlayerConfig;
+import cn.lanink.chainmine.config.PlayerConfig;
 import cn.lanink.chainmine.form.element.ElementToggle;
 import cn.lanink.chainmine.utils.Utils;
 import cn.nukkit.Player;
@@ -22,9 +22,6 @@ public class ChainMineForm extends FormWindowCustom {
         
         PlayerConfig config = ChainMine.getInstance().getPlayerConfig(player);
         for (BlockType blockType : BlockType.values()) {
-            if (blockType == BlockType.REDSTONEGLOWING) {
-                continue;
-            }
             this.addElement(
                     new ElementToggle(Utils.getBlockTypeShowName(blockType),
                             config.needChainMine(blockType),

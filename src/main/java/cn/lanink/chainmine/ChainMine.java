@@ -1,12 +1,16 @@
 package cn.lanink.chainmine;
 
+import cn.lanink.chainmine.config.PlayerConfig;
+import cn.lanink.chainmine.config.PluginConfig;
 import cn.lanink.chainmine.form.ChainMineForm;
 import cn.lanink.chainmine.form.FormListener;
+import cn.lanink.chainmine.utils.MetricsLite;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -22,6 +26,9 @@ public class ChainMine extends PluginBase {
     
     private final HashMap<Player, PlayerConfig> playerConfigMap = new HashMap<>();
     
+    @Getter
+    private PluginConfig pluginConfig;
+    
     public static ChainMine getInstance() {
         return chainMine;
     }
@@ -34,12 +41,21 @@ public class ChainMine extends PluginBase {
         if (!file.exists() && !file.mkdirs()) {
             this.getLogger().error("PlayerConfig 文件夹创建失败");
         }
+        
+        this.saveDefaultConfig();
+        this.pluginConfig = new PluginConfig(this.getConfig());
     }
     
     @Override
     public void onEnable() {
         this.getServer().getPluginManager().registerEvents(new FormListener(this), this);
         this.getServer().getPluginManager().registerEvents(new EventListener(this), this);
+        
+        try {
+            new MetricsLite(this, 11325);
+        }catch (Exception ignored) {
+        
+        }
         
         this.getLogger().info("插件加载完成！版本：" + VERSION);
     }

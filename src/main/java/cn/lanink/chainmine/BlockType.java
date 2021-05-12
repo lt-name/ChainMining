@@ -8,22 +8,21 @@ import lombok.Getter;
  */
 public enum BlockType {
     
-    WOOD("enabledWood", new BlockWood()),
-    GOLD("enabledGold", new BlockOreGold()),
-    IRON("enabledIron", new BlockOreIron()),
-    COAL("enabledCoal", new BlockOreCoal()),
-    LAPIS("enabledLapis", new BlockOreLapis()),
-    DIAMOND("enabledDiamond", new BlockOreDiamond()),
-    REDSTONE("enabledRedstone", new BlockOreRedstone()),
-    REDSTONEGLOWING("enabledRedstone", new BlockOreRedstoneGlowing()),
-    EMERALD("enabledEmerald", new BlockOreEmerald());
+    WOOD("enabledWood", BlockWood.class),
+    GOLD("enabledGold", BlockOreGold.class),
+    IRON("enabledIron", BlockOreIron.class),
+    COAL("enabledCoal", BlockOreCoal.class),
+    LAPIS("enabledLapis", BlockOreLapis.class),
+    DIAMOND("enabledDiamond", BlockOreDiamond.class),
+    REDSTONE("enabledRedstone", BlockOreRedstone.class),
+    EMERALD("enabledEmerald", BlockOreEmerald.class);
     
     @Getter
     private final String configKey;
     @Getter
-    private final Block block;
+    private final Class<? extends Block> block;
     
-    BlockType(String configKey, Block block) {
+    BlockType(String configKey, Class<? extends Block> block) {
         this.configKey = configKey;
         this.block = block;
     }

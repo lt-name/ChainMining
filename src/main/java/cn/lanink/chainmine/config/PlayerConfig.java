@@ -1,7 +1,8 @@
-package cn.lanink.chainmine;
+package cn.lanink.chainmine.config;
 
+import cn.lanink.chainmine.BlockType;
 import cn.nukkit.Player;
-import cn.nukkit.block.*;
+import cn.nukkit.block.Block;
 import cn.nukkit.utils.Config;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -34,7 +35,7 @@ public class PlayerConfig {
     
     public boolean needChainMine(@NotNull Block block) {
         for (Map.Entry<BlockType, Boolean> entry : this.enabledMap.entrySet()) {
-            if (Block.equals(block, entry.getKey().getBlock(), false)) {
+            if (entry.getKey().getBlock().isInstance(block)) {
                 return entry.getValue();
             }
         }

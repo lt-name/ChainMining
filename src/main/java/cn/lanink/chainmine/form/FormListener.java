@@ -1,7 +1,7 @@
 package cn.lanink.chainmine.form;
 
 import cn.lanink.chainmine.ChainMine;
-import cn.lanink.chainmine.PlayerConfig;
+import cn.lanink.chainmine.config.PlayerConfig;
 import cn.lanink.chainmine.form.element.ElementToggle;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
@@ -24,7 +24,7 @@ public class FormListener implements Listener {
     @EventHandler
     public void onPlayerFormResponded(PlayerFormRespondedEvent event) {
         Player player = event.getPlayer();
-        if (player == null || event.getWindow() == null || event.getResponse() == null) {
+        if (player == null || event.getResponse() == null) {
             return;
         }
         if (event.getWindow() instanceof ChainMineForm) {
