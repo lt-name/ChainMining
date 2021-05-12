@@ -6,7 +6,7 @@
 
     <groupId>cn.lanink</groupId>
     <artifactId>ChainMining</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0<!-- -SNAPSHOT--></version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -71,7 +71,7 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <include>${project.basedir}/src/main/java/cn/lanink/chainmine/ChainMine.java</include>
+                                <include>${project.basedir}/src/main/java/cn/lanink/chainmining/ChainMining.java</include>
                                 <include>${project.basedir}/src/main/resources/plugin.yml</include>
                             </includes>
                             <replacements>

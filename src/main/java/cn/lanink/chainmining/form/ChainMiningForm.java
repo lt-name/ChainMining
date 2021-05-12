@@ -16,16 +16,17 @@ import org.jetbrains.annotations.NotNull;
 public class ChainMiningForm extends FormWindowCustom {
     
     public ChainMiningForm(@NotNull Player player) {
-        super("ChainMine");
+        super("§l§7[§1C§2h§3a§4i§5n§6M§ai§cn§bi§dn§9g§7]");
     
-        this.addElement(new ElementLabel("设置连锁方块："));
+        this.addElement(new ElementLabel(
+                ChainMining.getInstance().getLanguage(player).translateString("GUI_PlayerConfigSet_tip")));
         
         PlayerConfig config = ChainMining.getInstance().getPlayerConfig(player);
         for (BlockType blockType : BlockType.values()) {
             this.addElement(
                     new ElementToggle(
-                            Utils.getBlockTypeShowName(blockType),
-                            config.needChainMine(blockType),
+                            Utils.getBlockTypeShowName(blockType, player),
+                            config.enabledChainMining(blockType),
                             blockType));
         }
     }

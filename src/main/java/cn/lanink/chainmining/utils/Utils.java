@@ -1,6 +1,8 @@
 package cn.lanink.chainmining.utils;
 
 import cn.lanink.chainmining.BlockType;
+import cn.lanink.chainmining.ChainMining;
+import cn.nukkit.Player;
 
 /**
  * @author lt_name
@@ -14,26 +16,28 @@ public class Utils {
     /**
      * 获取方块类型显示名称
      *
+     * @param blockType 方块类型
+     * @param player 玩家
      * @return 名称
      */
-    public static String getBlockTypeShowName(BlockType blockType) {
+    public static String getBlockTypeShowName(BlockType blockType, Player player) {
         switch (blockType) {
             case WOOD:
-                return "木头";
+                return ChainMining.getInstance().getLanguage(player).translateString("blockShowName_wood");
             case GOLD:
-                return "金矿";
+                return ChainMining.getInstance().getLanguage(player).translateString("blockShowName_gold");
             case IRON:
-                return "铁矿";
+                return ChainMining.getInstance().getLanguage(player).translateString("blockShowName_iron");
             case COAL:
-                return "煤矿";
+                return ChainMining.getInstance().getLanguage(player).translateString("blockShowName_coal");
             case LAPIS:
-                return "青金石矿";
+                return ChainMining.getInstance().getLanguage(player).translateString("blockShowName_lapis");
             case DIAMOND:
-                return "钻石矿";
+                return ChainMining.getInstance().getLanguage(player).translateString("blockShowName_diamond");
             case REDSTONE:
-                return "红石矿";
+                return ChainMining.getInstance().getLanguage(player).translateString("blockShowName_redstone");
             case EMERALD:
-                return "绿宝石矿";
+                return ChainMining.getInstance().getLanguage(player).translateString("blockShowName_emerald");
             default:
                 return blockType.getConfigKey();
         }

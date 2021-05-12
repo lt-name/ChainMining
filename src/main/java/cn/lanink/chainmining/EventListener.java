@@ -9,6 +9,7 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
+import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Level;
@@ -58,7 +59,7 @@ public class EventListener implements Listener {
     
     private void chainMining(@NotNull BlockBreakEvent event, @NotNull Player player, @NotNull Block block, @NotNull Item item) {
         PlayerConfig config = this.chainMining.getPlayerConfig(player);
-        if (!config.needChainMine(block)) {
+        if (!config.enabledChainMining(block)) {
             return;
         }
         Level level = block.getLevel();
@@ -77,7 +78,7 @@ public class EventListener implements Listener {
             check(blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(1, 0, 0)), nowBlock, block);
             check(blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(-1, 0, 0)), nowBlock, block);
             
-            if (config.needChainMine(nowBlock)) {
+            if (config.enabledChainMining(nowBlock)) {
                 blocks.add(nowBlock);
             }
             if (blocks.size() >= this.pluginConfig.getMaxLinkageCount()) {

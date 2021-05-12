@@ -4,6 +4,7 @@ import cn.lanink.chainmining.config.PlayerConfig;
 import cn.lanink.chainmining.config.PluginConfig;
 import cn.lanink.chainmining.form.ChainMiningForm;
 import cn.lanink.chainmining.form.FormListener;
+import cn.lanink.chainmining.utils.Language;
 import cn.lanink.chainmining.utils.MetricsLite;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
@@ -14,7 +15,9 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author lt_name
@@ -28,6 +31,8 @@ public class ChainMining extends PluginBase {
     
     @Getter
     private PluginConfig pluginConfig;
+    
+    private final HashMap<String, Language> languageMap = new HashMap<>();
     
     public static ChainMining getInstance() {
         return chainMining;
@@ -44,6 +49,27 @@ public class ChainMining extends PluginBase {
         
         this.saveDefaultConfig();
         this.pluginConfig = new PluginConfig(this.getConfig());
+        
+        this.loadLanguages();
+    }
+    
+    private void loadLanguages() {
+        List<String> list = Arrays.asList("zh_CN", "en_US");
+        for (String string : list) {
+            this.saveResource("Language/" + string + ".properties");
+        }
+    
+        File[] files = new File(this.getDataFolder() + "/Language").listFiles();
+        if (files != null && files.length > 0) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    String name = file.getName().split("\\.")[0];
+                    this.languageMap.put(name, new Language(file));
+                    getLogger().info("§aLanguage: " + name + " loaded !");
+                }
+            }
+        }
+        
     }
     
     @Override
@@ -57,7 +83,8 @@ public class ChainMining extends PluginBase {
         
         }
         
-        this.getLogger().info("插件加载完成！版本：" + VERSION);
+        this.getLogger().info("§eChainMining §aEnabled! Version:" + VERSION);
+        this.getLogger().warning("§eChainMining §ais a §efree §aplugin, github: https://github.com/lt-name/ChainMining");
     }
     
     @Override
@@ -94,6 +121,20 @@ public class ChainMining extends PluginBase {
             config.save();
             this.playerConfigMap.remove(player);
         }
+    }
+    
+    public Language getLanguage() {
+        return this.getLanguage(null);
+    }
+    
+    public Language getLanguage(Player player) {
+        if (player != null) {
+            String languageCode = player.getLoginChainData().getLanguageCode();
+            if (this.languageMap.containsKey(languageCode)) {
+                return this.languageMap.get(languageCode);
+            }
+        }
+        return this.languageMap.get(this.pluginConfig.getDefaultLanguage());
     }
     
 }

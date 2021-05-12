@@ -6,6 +6,7 @@ import cn.nukkit.block.Block;
 import cn.nukkit.utils.Config;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumMap;
@@ -21,7 +22,6 @@ public class PlayerConfig {
     private final Player player;
     private final Config config;
     
-    @Getter
     private final EnumMap<BlockType, Boolean> enabledMap = new EnumMap<>(BlockType.class);
     
     public PlayerConfig(@NotNull Player player, @NotNull Config config) {
@@ -33,7 +33,7 @@ public class PlayerConfig {
         }
     }
     
-    public boolean needChainMine(@NotNull Block block) {
+    public boolean enabledChainMining(@NotNull Block block) {
         for (Map.Entry<BlockType, Boolean> entry : this.enabledMap.entrySet()) {
             if (entry.getKey().getBlock().isInstance(block)) {
                 return entry.getValue();
@@ -42,7 +42,7 @@ public class PlayerConfig {
         return false;
     }
     
-    public boolean needChainMine(@NotNull BlockType blockType) {
+    public boolean enabledChainMining(@NotNull BlockType blockType) {
         return this.enabledMap.getOrDefault(blockType, false);
     }
     

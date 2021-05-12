@@ -1,3 +1,4 @@
+defaultLanguage: "zh_CN"
 #true - 扫描附近(正常玩家挖矿可以看到的)
 #false - 只检测相邻方块
 scanNearby: true
