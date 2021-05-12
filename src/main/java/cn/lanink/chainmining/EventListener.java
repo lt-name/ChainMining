@@ -70,12 +70,12 @@ public class EventListener implements Listener {
         
         Block nowBlock;
         while ((nowBlock = needCheckBlocks.poll()) != null) {
-            check(config, blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(0, 0, 1)), nowBlock, block);
-            check(config, blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(0, 0, -1)), nowBlock, block);
-            check(config, blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(0, 1, 0)), nowBlock, block);
-            check(config, blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(0, -1, 0)), nowBlock, block);
-            check(config, blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(1, 0, 0)), nowBlock, block);
-            check(config, blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(-1, 0, 0)), nowBlock, block);
+            check(blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(0, 0, 1)), nowBlock, block);
+            check(blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(0, 0, -1)), nowBlock, block);
+            check(blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(0, 1, 0)), nowBlock, block);
+            check(blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(0, -1, 0)), nowBlock, block);
+            check(blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(1, 0, 0)), nowBlock, block);
+            check(blocks, needCheckBlocks, completeCheck, level.getBlock(nowBlock.add(-1, 0, 0)), nowBlock, block);
             
             if (config.needChainMine(nowBlock)) {
                 blocks.add(nowBlock);
@@ -117,8 +117,7 @@ public class EventListener implements Listener {
     }
     
     
-    private void check(@NotNull PlayerConfig config,
-                       @NotNull ArrayList<Block> blocks,
+    private void check(@NotNull ArrayList<Block> blocks,
                        @NotNull LinkedBlockingQueue<Block> needCheckBlocks,
                        @NotNull ArrayList<Block> completeCheck,
                        @NotNull Block nextBlock,
@@ -130,14 +129,14 @@ public class EventListener implements Listener {
         }
         completeCheck.add(nextBlock);
         
-        if (config.needChainMine(nextBlock)) {
+        if (firstBlock.getClass().isInstance(nextBlock)) {
             needCheckBlocks.offer(nextBlock);
             return;
         }
         
         if (this.pluginConfig.isScanNearby()) {
             if (!nextBlock.isNormalBlock()) {
-                if (config.needChainMine(nowBlock)) {
+                if (firstBlock.getClass().isInstance(nowBlock)) {
                     needCheckBlocks.offer(nextBlock);
                 } else {
                     for (Block block : blocks) {

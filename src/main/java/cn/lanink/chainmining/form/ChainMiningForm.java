@@ -23,7 +23,8 @@ public class ChainMiningForm extends FormWindowCustom {
         PlayerConfig config = ChainMining.getInstance().getPlayerConfig(player);
         for (BlockType blockType : BlockType.values()) {
             this.addElement(
-                    new ElementToggle(Utils.getBlockTypeShowName(blockType),
+                    new ElementToggle(
+                            Utils.getBlockTypeShowName(blockType),
                             config.needChainMine(blockType),
                             blockType));
         }

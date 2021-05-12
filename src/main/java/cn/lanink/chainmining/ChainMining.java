@@ -52,7 +52,7 @@ public class ChainMining extends PluginBase {
         this.getServer().getPluginManager().registerEvents(new EventListener(this), this);
         
         try {
-            new MetricsLite(this, 11325);
+            new MetricsLite(this, 11328);
         }catch (Exception ignored) {
         
         }

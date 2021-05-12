@@ -1,14 +1,14 @@
 name: ChainMining
-main: cn.lanink.chainmining.ChainMine
+main: cn.lanink.chainmining.ChainMining
 version: "1.0.0"
-api: ["1.0.9"]
+api: ["1.0.0"]
 load: POSTWORLD
 author: "LT_Name"
 
 commands:
   chainmine:
-    description: "§aChainMine command"
-    usage: "§a/ChainMine 打开GUI界面"
+    description: "§aChainMining Command"
+    usage: "§a/ChainMining §eOpen GUI"
     permission: chainmining.user
 
 permissions:
