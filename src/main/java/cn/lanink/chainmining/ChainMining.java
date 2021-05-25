@@ -64,8 +64,15 @@ public class ChainMining extends PluginBase {
             for (File file : files) {
                 if (file.isFile()) {
                     String name = file.getName().split("\\.")[0];
-                    this.languageMap.put(name, new Language(file));
-                    getLogger().info("§aLanguage: " + name + " loaded !");
+                    Language language = new Language(file);
+                    this.languageMap.put(name, language);
+                    if (list.contains(name)) {
+                        Config config = new Config(Config.PROPERTIES);
+                        if (config.load(this.getResource("Language/" + name + ".properties"))) {
+                            language.update(config);
+                        }
+                    }
+                    this.getLogger().info("§aLanguage: " + name + " loaded !");
                 }
             }
         }
