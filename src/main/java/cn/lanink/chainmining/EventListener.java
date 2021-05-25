@@ -9,7 +9,6 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.block.BlockBreakEvent;
-import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Level;
@@ -45,6 +44,10 @@ public class EventListener implements Listener {
         Item item = event.getItem();
         Item[] drops = event.getDrops();
         if (player == null || block == null || item == null || drops == null) {
+            return;
+        }
+
+        if (this.pluginConfig.isBanWorld(player.getLevel())) {
             return;
         }
         

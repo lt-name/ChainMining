@@ -7,3 +7,6 @@ scanNearby: true
 createModeEnable: false
 #最大连锁方块数量
 maxLinkageCount: 32
+#禁用连锁挖矿的世界
+banWorlds:
+  - "zc"

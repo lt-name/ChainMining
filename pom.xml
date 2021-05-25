@@ -6,7 +6,7 @@
 
     <groupId>cn.lanink</groupId>
     <artifactId>ChainMining</artifactId>
-    <version>1.1.0<!-- -SNAPSHOT--></version>
+    <version>1.2.0<!-- -SNAPSHOT--></version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -73,6 +73,7 @@
                             <includes>
                                 <include>${project.basedir}/src/main/java/cn/lanink/chainmining/ChainMining.java</include>
                                 <include>${project.basedir}/src/main/resources/plugin.yml</include>
+                                <include>${project.basedir}/.circleci/config.yml</include>
                             </includes>
                             <replacements>
                                 <replacement>
@@ -83,6 +84,10 @@
                                 <replacement>
                                     <token>version: ".*"</token>
                                     <value>version: "${project.version}"</value>
+                                </replacement>
+                                <replacement>
+                                    <token>target/ChainMining-.*.jar</token>
+                                    <value>target/ChainMining-${project.version}.jar</value>
                                 </replacement>
                             </replacements>
                         </configuration>

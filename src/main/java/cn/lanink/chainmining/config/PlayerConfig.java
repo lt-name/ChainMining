@@ -6,7 +6,6 @@ import cn.nukkit.block.Block;
 import cn.nukkit.utils.Config;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumMap;
@@ -29,7 +28,7 @@ public class PlayerConfig {
         this.config = config;
     
         for (BlockType blockType : BlockType.values()) {
-            this.enabledMap.put(blockType, config.getBoolean(blockType.getConfigKey(), true));
+            this.enabledMap.put(blockType, config.getBoolean(blockType.getConfigKey()));
         }
     }
     
