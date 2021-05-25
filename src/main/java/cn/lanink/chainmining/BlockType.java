@@ -17,7 +17,8 @@ public enum BlockType {
     DIAMOND("enabledDiamond", BlockOreDiamond.class, "blockShowName_diamond"),
     REDSTONE("enabledRedstone", BlockOreRedstone.class, "blockShowName_redstone"),
     EMERALD("enabledEmerald", BlockOreEmerald.class, "blockShowName_emerald"),
-    OREQUARTZ("enabledOreQuartz", BlockOreQuartz.class, "blockShowName_OreQuartz");
+    OREQUARTZ("enabledOreQuartz", BlockOreQuartz.class, "blockShowName_OreQuartz"),
+    OREGOLDNETHER("enabledOreGoldNether", BlockOreGoldNether.class, "blockShowName_OreGoldNether");
     
     @Getter
     private final String configKey;
