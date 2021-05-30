@@ -9,7 +9,10 @@ import lombok.Getter;
  */
 public enum BlockType {
     
-    WOOD("enabledWood", "blockShowName_wood", new Class[]{BlockWood.class}),
+    WOOD("enabledWood", "blockShowName_wood",
+            new Class[]{BlockWood.class,
+                    BlockHyphaeCrimson.class, BlockHyphaeStrippedCrimson.class,
+                    BlockHyphaeWarped.class, BlockHyphaeStrippedWarped.class}),
     GOLD("enabledGold", "blockShowName_gold", new Class[]{BlockOreGold.class}),
     IRON("enabledIron", "blockShowName_iron", new Class[]{BlockOreIron.class}),
     COAL("enabledCoal", "blockShowName_coal", new Class[]{BlockOreCoal.class}),
