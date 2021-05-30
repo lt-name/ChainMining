@@ -9,26 +9,26 @@ import lombok.Getter;
  */
 public enum BlockType {
     
-    WOOD("enabledWood", BlockWood.class, "blockShowName_wood"),
-    GOLD("enabledGold", BlockOreGold.class, "blockShowName_gold"),
-    IRON("enabledIron", BlockOreIron.class, "blockShowName_iron"),
-    COAL("enabledCoal", BlockOreCoal.class, "blockShowName_coal"),
-    LAPIS("enabledLapis", BlockOreLapis.class, "blockShowName_lapis"),
-    DIAMOND("enabledDiamond", BlockOreDiamond.class, "blockShowName_diamond"),
-    REDSTONE("enabledRedstone", BlockOreRedstone.class, "blockShowName_redstone"),
-    EMERALD("enabledEmerald", BlockOreEmerald.class, "blockShowName_emerald"),
-    OREQUARTZ("enabledOreQuartz", BlockOreQuartz.class, "blockShowName_OreQuartz");
+    WOOD("enabledWood", "blockShowName_wood", new Class[]{BlockWood.class}),
+    GOLD("enabledGold", "blockShowName_gold", new Class[]{BlockOreGold.class}),
+    IRON("enabledIron", "blockShowName_iron", new Class[]{BlockOreIron.class}),
+    COAL("enabledCoal", "blockShowName_coal", new Class[]{BlockOreCoal.class}),
+    LAPIS("enabledLapis", "blockShowName_lapis", new Class[]{BlockOreLapis.class}),
+    DIAMOND("enabledDiamond", "blockShowName_diamond", new Class[]{BlockOreDiamond.class}),
+    REDSTONE("enabledRedstone", "blockShowName_redstone", new Class[]{BlockOreRedstone.class}),
+    EMERALD("enabledEmerald", "blockShowName_emerald", new Class[]{BlockOreEmerald.class}),
+    OREQUARTZ("enabledOreQuartz", "blockShowName_OreQuartz", new Class[]{BlockOreQuartz.class});
     
     @Getter
     private final String configKey;
-    @Getter
-    private final Class<? extends Block> block;
     private final String blockShowName;
-    
-    BlockType(String configKey, Class<? extends Block> block, String blockShowName) {
+    @Getter
+    private final Class<? extends Block>[] blockClass;
+
+    BlockType(String configKey, String blockShowName, Class<? extends Block>[] blockClass) {
         this.configKey = configKey;
-        this.block = block;
         this.blockShowName = blockShowName;
+        this.blockClass = blockClass;
     }
 
     public String getShowName() {
