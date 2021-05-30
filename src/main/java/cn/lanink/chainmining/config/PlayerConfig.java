@@ -34,8 +34,10 @@ public class PlayerConfig {
     
     public boolean enabledChainMining(@NotNull Block block) {
         for (Map.Entry<BlockType, Boolean> entry : this.enabledMap.entrySet()) {
-            if (entry.getKey().getBlock().isInstance(block)) {
-                return entry.getValue();
+            for (Class<? extends Block> c : entry.getKey().getBlockClass()) {
+                if (c.isInstance(block)) {
+                    return entry.getValue();
+                }
             }
         }
         return false;
