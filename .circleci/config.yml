@@ -20,7 +20,7 @@ jobs:
           command: mvn -B clean package
 
       - store_artifacts:
-          path: target/ChainMining-1.3.0-SNAPSHOT.jar
+          path: target/ChainMining-1.3.0.jar
 
 workflows:
   sample: 
