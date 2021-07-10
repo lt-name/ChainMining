@@ -1,6 +1,6 @@
 name: ChainMining
 main: cn.lanink.chainmining.ChainMining
-version: "1.3.0-PN-SNAPSHOT"
+version: "1.3.0-PN"
 api: ["1.0.0"]
 load: POSTWORLD
 author: "LT_Name"
