@@ -1,5 +1,6 @@
 package cn.lanink.chainmining.form;
 
+import cn.lanink.chainmining.BlockManager;
 import cn.lanink.chainmining.ChainMining;
 import cn.lanink.chainmining.config.PlayerConfig;
 import cn.lanink.chainmining.form.element.ElementToggle;
@@ -34,8 +35,10 @@ public class FormListener implements Listener {
             int i = 0;
             for (Element element: window.getElements()) {
                 if (element instanceof ElementToggle) {
-                    config.getEnabledMap().put(((ElementToggle) element).getBlockType(),
-                            window.getResponse().getToggleResponse(i));
+                    BlockManager.BlockInfo blockInfo = this.chainMining.getBlockManager().getBlockInfoByName(((ElementToggle) element).getBlockInfoName());
+                    if (blockInfo != null) {
+                        config.getEnabledMap().put(blockInfo, window.getResponse().getToggleResponse(i));
+                    }
                 }
                 i++;
             }

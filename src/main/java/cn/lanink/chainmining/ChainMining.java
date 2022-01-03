@@ -26,11 +26,13 @@ public class ChainMining extends PluginBase {
     
     public static final String VERSION = "?";
     private static ChainMining chainMining;
-    
+
     private final HashMap<Player, PlayerConfig> playerConfigMap = new HashMap<>();
     
     @Getter
     private PluginConfig pluginConfig;
+    @Getter
+    private BlockManager blockManager;
     
     private final HashMap<String, Language> languageMap = new HashMap<>();
     
@@ -44,10 +46,11 @@ public class ChainMining extends PluginBase {
     
         File file = new File(this.getDataFolder() + "/PlayerConfig");
         if (!file.exists() && !file.mkdirs()) {
-            this.getLogger().error("PlayerConfig 文件夹创建失败");
+            this.getLogger().error("PlayerConfig 文件夹创建失败，玩家配置可能无法正常保存！");
         }
         
         this.saveDefaultConfig();
+        this.saveResource("block.yml");
         this.pluginConfig = new PluginConfig(this.getConfig());
         
         this.loadLanguages();
@@ -76,11 +79,12 @@ public class ChainMining extends PluginBase {
                 }
             }
         }
-        
     }
     
     @Override
     public void onEnable() {
+        this.blockManager = new BlockManager(this);
+
         this.getServer().getPluginManager().registerEvents(new FormListener(this), this);
         this.getServer().getPluginManager().registerEvents(new EventListener(this), this);
         

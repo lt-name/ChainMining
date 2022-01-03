@@ -1,6 +1,5 @@
 package cn.lanink.chainmining.form.element;
 
-import cn.lanink.chainmining.BlockType;
 import lombok.Getter;
 
 /**
@@ -9,11 +8,11 @@ import lombok.Getter;
 public class ElementToggle extends cn.nukkit.form.element.ElementToggle {
     
     @Getter
-    private final BlockType blockType;
+    private final String blockInfoName;
     
-    public ElementToggle(String text, boolean defaultValue, BlockType blockType) {
+    public ElementToggle(String text, boolean defaultValue, String blockInfoName) {
         super(text, defaultValue);
-        this.blockType = blockType;
+        this.blockInfoName = blockInfoName;
     }
     
 }

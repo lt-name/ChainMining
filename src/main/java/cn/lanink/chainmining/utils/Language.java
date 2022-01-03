@@ -30,7 +30,7 @@ public class Language {
     }
 
     public String translateString(String key, Object... params) {
-        String string = this.config.getString(key, "§c Language reading error!");
+        String string = this.config.getString(key, key);
         if (params != null && params.length > 0) {
             for (int i = 1; i < params.length + 1; i++) {
                 string = string.replace("%" + i + "%", Objects.toString(params[i-1]));

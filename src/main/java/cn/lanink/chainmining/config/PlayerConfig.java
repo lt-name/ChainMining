@@ -1,6 +1,7 @@
 package cn.lanink.chainmining.config;
 
-import cn.lanink.chainmining.BlockType;
+import cn.lanink.chainmining.BlockManager;
+import cn.lanink.chainmining.ChainMining;
 import cn.nukkit.Player;
 import cn.nukkit.block.Block;
 import cn.nukkit.utils.Config;
@@ -8,7 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.EnumMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -21,35 +22,33 @@ public class PlayerConfig {
     private final Player player;
     private final Config config;
     
-    private final EnumMap<BlockType, Boolean> enabledMap = new EnumMap<>(BlockType.class);
+    private final LinkedHashMap<BlockManager.BlockInfo, Boolean> enabledMap = new LinkedHashMap<>();
     
     public PlayerConfig(@NotNull Player player, @NotNull Config config) {
         this.player = player;
         this.config = config;
-    
-        for (BlockType blockType : BlockType.values()) {
-            this.enabledMap.put(blockType, config.getBoolean(blockType.getConfigKey()));
+
+        for (BlockManager.BlockInfo blockInfo : ChainMining.getInstance().getBlockManager().getBlockList()) {
+            this.enabledMap.put(blockInfo, config.getBoolean(blockInfo.getName()));
         }
     }
     
     public boolean enabledChainMining(@NotNull Block block) {
-        for (Map.Entry<BlockType, Boolean> entry : this.enabledMap.entrySet()) {
-            for (Class<? extends Block> c : entry.getKey().getBlockClass()) {
-                if (c.isInstance(block)) {
-                    return entry.getValue();
-                }
+        for (Map.Entry<BlockManager.BlockInfo, Boolean> entry : this.enabledMap.entrySet()) {
+            if (entry.getKey().getBlockClass().isInstance(block)) {
+                return entry.getValue();
             }
         }
         return false;
     }
     
-    public boolean enabledChainMining(@NotNull BlockType blockType) {
-        return this.enabledMap.getOrDefault(blockType, false);
+    public boolean enabledChainMining(@NotNull BlockManager.BlockInfo blockInfo) {
+        return this.enabledMap.getOrDefault(blockInfo, false);
     }
     
     public void save() {
-        for (Map.Entry<BlockType, Boolean> entry : this.enabledMap.entrySet()) {
-            this.config.set(entry.getKey().getConfigKey(), entry.getValue());
+        for (Map.Entry<BlockManager.BlockInfo, Boolean> entry : this.enabledMap.entrySet()) {
+            this.config.set(entry.getKey().getName(), entry.getValue());
         }
         this.config.save();
     }

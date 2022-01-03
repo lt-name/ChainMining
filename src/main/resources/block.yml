@@ -1,0 +1,12 @@
+#支持连锁的方块列表(可自行添加)
+block:
+  - "BlockWood"
+  - "BlockOreGold"
+  - "BlockOreIron"
+  - "BlockOreCoal"
+  - "BlockOreLapis"
+  - "BlockOreDiamond"
+  - "BlockOreRedstone"
+  - "BlockOreEmerald"
+  - "BlockOreQuartz"
+  - "BlockOreGoldNether" #Only PowerNukkit

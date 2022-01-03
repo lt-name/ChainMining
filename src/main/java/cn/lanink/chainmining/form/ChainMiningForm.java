@@ -1,6 +1,6 @@
 package cn.lanink.chainmining.form;
 
-import cn.lanink.chainmining.BlockType;
+import cn.lanink.chainmining.BlockManager;
 import cn.lanink.chainmining.ChainMining;
 import cn.lanink.chainmining.config.PlayerConfig;
 import cn.lanink.chainmining.form.element.ElementToggle;
@@ -21,12 +21,12 @@ public class ChainMiningForm extends FormWindowCustom {
                 ChainMining.getInstance().getLanguage(player).translateString("GUI_PlayerConfigSet_tip")));
         
         PlayerConfig config = ChainMining.getInstance().getPlayerConfig(player);
-        for (BlockType blockType : BlockType.values()) {
+        for (BlockManager.BlockInfo blockInfo : ChainMining.getInstance().getBlockManager().getBlockList()) {
             this.addElement(
                     new ElementToggle(
-                            blockType.getShowName(player),
-                            config.enabledChainMining(blockType),
-                            blockType));
+                            blockInfo.getShowName(player),
+                            config.enabledChainMining(blockInfo),
+                            blockInfo.getName()));
         }
     }
     
